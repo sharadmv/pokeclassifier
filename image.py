@@ -35,3 +35,10 @@ class Image:
         labels = morphology.label(self._image)
         properties = measure.regionprops(labels)
         return map(lambda x: x.centroid, properties)
+
+    @property
+    def shape(self):
+        return self._image.shape
+
+    def __getitem__(self, *args):
+        return self._image.__getitem__(*args)
