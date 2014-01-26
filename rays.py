@@ -22,11 +22,14 @@ class RayShooter:
     def march(self, angle):
         start = self._center
         x, y = self._image.shape
-        while start[0] >= 0 and start[0] <= x and \
-                start[1] >= 0 and start[1] <= y:
+        while True:
             start = start[0] + cos(angle), start[1] + sin(angle)
-            point_check = tuple(map(int, start))
-            pixel = self._image[point_check]
+            if start[0] >= 0 and start[0] < x and \
+                    start[1] >= 0 and start[1] < y:
+                point_check = tuple(map(int, start))
+                pixel = self._image[point_check]
+            else:
+                break
             if pixel == 0:
                 break
         return start
